@@ -1,0 +1,56 @@
+
+.navigation {
+    height: 100vh;
+    width: 20vw;
+    max-width: 400px;
+    background-color: #3b75cb;
+    box-sizing: border-box;
+    padding: 5px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 997;
+}
+.brand {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.navigation-title {
+    height: 50px;
+    width: 100%;
+    background-color: #22489b;
+    box-sizing: border-box;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+.navigation-title h6 {
+    color: #4687de;
+}
+.notif-number {
+    padding: 7px !important;
+    transform: translate(-10px,-2px);
+}
+.navigation-link {
+    height: 50px !important;
+}
+.remove-underline {
+    text-decoration: none !important;
+}
+.remove-underline {
+    text-decoration: none !important;
+}
+.navigation-tab-title {
+    text-decoration: none !important;
+}
+.navigation-tab-title:hover {
+    text-decoration: none !important;
+}
+.active-tab {
+    background-color: #3364ba !important;
+    border-left: 3px solid #000;
+}

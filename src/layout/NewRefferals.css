@@ -1,0 +1,9 @@
+.more-info-btn {
+    width: 90%;
+}
+.more-info-link {
+    color: #fff !important;
+}
+.more-info-link:hover {
+    text-decoration: none !important;
+}
