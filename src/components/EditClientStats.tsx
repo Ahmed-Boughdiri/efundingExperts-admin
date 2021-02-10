@@ -56,7 +56,7 @@ const EditClientStats:React.FC<EditClientStatsProps> = ({
                     <Form>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label className="edit-client-stats-label">
-                                Approx Quote Amount($)
+                                Funding Amount Requested($)
                             </Form.Label>
                             <Form.Control 
                                 type="text" 

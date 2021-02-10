@@ -28,7 +28,7 @@ const ApproveRefferal:React.FC<ApproveRefferalProps> = ({ closeFunc, value, onCh
                 <Modal.Body>
                     <Form>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Label className="add-quote-note-label">Notes:</Form.Label>
+                            <Form.Label className="add-quote-note-label">Notes/Quote:</Form.Label>
                             <Form.Control as="textarea" rows={3} value={value as string} onChange={onChange} />
                         </Form.Group>
                         <Button className="add-quote-note-btn" variant="primary" onClick={onClick}>

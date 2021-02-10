@@ -1,3 +1,4 @@
+import { NotesProps } from "./notes";
 
 export interface RefferalProps {
     Adress: String,
@@ -10,7 +11,7 @@ export interface RefferalProps {
     FirstName: String,
     Income: Number,
     LastName: String,
-    Notes: String,
+    Notes: NotesProps[],
     OwnerID: String,
     OwnerName: String,
     Phone: Number,

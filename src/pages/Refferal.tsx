@@ -18,6 +18,7 @@ import { getRefferal } from "../global/Refferal";
 import Error from "../components/Error";
 import { RefferalProps } from "../@types/refferal";
 import { RouteComponentProps } from "react-router-dom";
+import NotesHistory from "../components/NotesHistory";
 
 type RefferalComponentProps = StateProps & DispatchProps & RouteComponentProps;
 
@@ -137,6 +138,7 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
         setSendreportNote("")
         setShowSendReport(false)
     }
+    const [showNotesHistory, setShowNotesHistory] = useState(false)
     return (
         <Page currentPage="Refferals">
             {
@@ -279,26 +281,75 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
                                         <h6>Notes</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={refferalData.Notes as string} disabled />
+                                        <Form.Control type="text" value={(refferalData?.Notes?.length) ? refferalData?.Notes[refferalData.Notes.length - 1].contentValue as string : ""} disabled />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextPassword">
-                                    <Form.Label column sm={5}>
-                                        <h6>Upload file:(upload multiple files on next page)</h6>
-                                    </Form.Label>
-                                    <Col sm={7}>
-                                        <a href={`https://efundingexperts.herokuapp.com/report/download/${refferalData.creditReport}`} target="_blank" rel="noreferrer">Download Credit Report</a>
-                                    </Col>
-                                </Form.Group>
+                                {
+                                    (refferalData.creditReport) && (
+                                        <Form.Group as={Row} controlId="formPlaintextPassword">
+                                            <Form.Label column sm={5}>
+                                                <h6>Upload file:(upload multiple files on next page)</h6>
+                                            </Form.Label>
+                                            <Col sm={7}>
+                                                <a 
+                                                    href={`
+                                                        https://efundingexperts.herokuapp.com/report/download/${refferalData.creditReport}
+                                                    `} 
+                                                    target="_blank" 
+                                                    rel="noreferrer"
+                                                >
+                                                    Download Credit Report
+                                                </a>
+                                            </Col>
+                                        </Form.Group>
+                                    )
+                                }
+
                             </Form>
                         </Card.Body>
                         <Card.Footer>
-                            <Button variant="primary" onClick={() =>setApproveRefferal(true)}>Approve Refferal</Button>
-                            <Button variant="danger" className="ml-2" onClick={() =>setValidateDeny(true)}>Deny Refferal</Button>
-                            <Button variant="success" className="ml-2" onClick={() =>setShowSendReport(true)}>Send</Button>
-                            <Button variant="success" className="ml-2" onClick={() =>setAddNote(true)}>Add Note</Button>
-                            <Button variant="success" className="ml-2" onClick={() =>setConvertToClientForm(true)}>Covert To Client</Button>
+                            <Button 
+                                variant="primary" 
+                                onClick={() =>setApproveRefferal(true)}
+                            >
+                                Approve Refferal
+                            </Button>
+                            <Button
+                                variant="primary"
+                                className="ml-2"
+                                onClick={() =>setShowNotesHistory(true)}
+                            >
+                                See Notes History
+                            </Button>
+                            <Button 
+                                variant="danger" 
+                                className="ml-2" 
+                                onClick={() =>setValidateDeny(true)}
+                            >
+                                Deny Refferal
+                            </Button>
+                            <Button 
+                                variant="success" 
+                                className="ml-2" 
+                                onClick={() =>setShowSendReport(true)}
+                            >
+                                Send
+                            </Button>
+                            <Button 
+                                variant="success" 
+                                className="ml-2" 
+                                onClick={() =>setAddNote(true)}
+                            >
+                                Add Note
+                            </Button>
+                            <Button 
+                                variant="success" 
+                                className="ml-2" 
+                                onClick={() =>setConvertToClientForm(true)}
+                            >
+                                Covert To Client
+                            </Button>
                         </Card.Footer>
                     </Card>
                     {
@@ -381,7 +432,12 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
                     </>
                 )
             }
-            
+            {
+                showNotesHistory && <NotesHistory 
+                                        closeFunc={() =>setShowNotesHistory(false)}
+                                        notes={refferalData?.Notes || []}
+                                    />
+            }
         </Page>
     )
 }

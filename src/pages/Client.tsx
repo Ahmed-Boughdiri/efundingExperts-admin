@@ -14,6 +14,7 @@ import EditClientStats from "../components/EditClientStats";
 import handleClientEditStatsFunc from "../global/EditClientStat";
 import AddClientNote from "../components/AddQuoteNote";
 import addClientNote from "../global/AddClientNote";
+import NotesHistory from "../components/NotesHistory";
 
 type ClientComponentProps = RouteComponentProps & StateProps & DispatchProps
 
@@ -130,6 +131,7 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
     useEffect(() =>{
         handleClientData();
     },[])
+    const [showNotesHistory, setShowNotesHistory] = useState(false)
     return (
         <Page currentPage="Clients">
             {
@@ -226,13 +228,13 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
                                         <h6>Notes:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.Notes as string} disabled />
+                                        <Form.Control type="text" value={(clientData?.Notes?.length) ? clientData.Notes[clientData.Notes.length - 1].contentValue as string : ""} disabled />
                                     </Col>
                                 </Form.Group>
 
                                 <Form.Group as={Row} controlId="formPlaintextEmail">
                                     <Form.Label column sm={5}>
-                                        <h6>Approximate Quote Amount:</h6>
+                                        <h6>Funding Amount Requested:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
                                         <Form.Control type="text" value={clientData.ApproxQuoteAmount as number} disabled />
@@ -257,20 +259,26 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
-                                        <h6>Uploaded File:</h6>
-                                    </Form.Label>
-                                    <Col sm={7}>
-                                        <a 
-                                            href={`https://efundingexperts.herokuapp.com/report/download/${clientData.creditReport || ""}`} 
-                                            rel="noreferrer" 
-                                            target="_blank"
-                                        >
-                                            Credit Report Download Link
-                                        </a>
-                                    </Col>
-                                </Form.Group>
+                                {
+                                    clientData.creditReport && (
+                                        <Form.Group as={Row} controlId="formPlaintextEmail">
+                                            <Form.Label column sm={5}>
+                                                <h6>Uploaded File:</h6>
+                                            </Form.Label>
+                                            <Col sm={7}>
+                                                <a 
+                                                    href={`
+                                                        https://efundingexperts.herokuapp.com/report/download/${clientData.creditReport || ""}
+                                                    `} 
+                                                    rel="noreferrer" 
+                                                    target="_blank"
+                                                >
+                                                    Credit Report Download Link
+                                                </a>
+                                            </Col>
+                                        </Form.Group>
+                                    )
+                                }
 
                             </Form>
                         </Card.Body>
@@ -280,6 +288,13 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
                                 onClick={() =>setSendContractForm(true)}
                             >
                                 Send Contract
+                            </Button>
+                            <Button
+                                variant="primary"
+                                className="ml-2"
+                                onClick={() =>setShowNotesHistory(true)}
+                            >
+                                See Notes History
                             </Button>
                             <Button 
                                 variant="success" 
@@ -374,6 +389,12 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
             }
             {
                 showError && <Error error={error} />
+            }
+            {
+                showNotesHistory && <NotesHistory 
+                                        closeFunc={() =>setShowNotesHistory(false)}
+                                        notes={clientData?.Notes || []}
+                                    />
             }
         </Page>
     )

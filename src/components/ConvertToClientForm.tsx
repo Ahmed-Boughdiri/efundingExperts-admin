@@ -34,7 +34,7 @@ const ConvertToClientForm:React.FC<ConvertToClientFormProps> = ({ closeFunc, onC
                 <Modal.Body>
                     <Form>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Approx Quote Amount($)</Form.Label>
+                            <Form.Label>Funding Amount Requested($)</Form.Label>
                             <Form.Control type="text" placeholder="" onChange={onChangeApproxQuote} value={approximateQuoteAmountValue as number} />
                         </Form.Group>
 

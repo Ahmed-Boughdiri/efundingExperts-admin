@@ -1,3 +1,4 @@
+import { NotesProps } from "./notes";
 
 export interface ApprovedQuoteProps {
     Adress: String,
@@ -10,7 +11,7 @@ export interface ApprovedQuoteProps {
     FirstName: String,
     Income: Number,
     LastName: String,
-    Notes: String
+    Notes: NotesProps[],
     OwnerID: String,
     OwnerName: String,
     Phone: Number,

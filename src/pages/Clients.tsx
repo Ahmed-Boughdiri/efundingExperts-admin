@@ -56,7 +56,7 @@ const Clients:React.FC<ClientsComponentProps> = ({ storeClient, history }) =>{
                                                 <th>#</th>
                                                 <th>Quote Sender</th>
                                                 <th>Full Name</th>
-                                                <th>Approximate Quote Amount</th>
+                                                <th>Funding Amount Requested</th>
                                                 <th>Total Commission</th>
                                                 <th>Commission Collected</th>
                                                 <th>More Info</th>

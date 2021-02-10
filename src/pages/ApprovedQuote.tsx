@@ -14,6 +14,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { ApprovedQuoteProps } from "../@types/approved-quote";
 import AddQuoteNote from "../components/AddQuoteNote";
 import addApprovedQuoteNote from "../global/AddApprovedQuoteNote";
+import NotesHistory from "../components/NotesHistory";
 
 interface ApproveQuoteProps extends RouteComponentProps {
     approvedQuoteData: ApprovedQuoteProps,
@@ -130,6 +131,7 @@ const ApprovedQuote:React.FC<ApproveQuoteProps> = ({ approvedQuoteData, history,
             history.push("/quotes/approved");
         }
     }
+    const [showNotesHistory, setShowNotesHistory] = useState(false)
     return (
         <Page currentPage="ApprovedQuotes">
             {
@@ -275,18 +277,31 @@ const ApprovedQuote:React.FC<ApproveQuoteProps> = ({ approvedQuoteData, history,
                                         <h6>Notes:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.Notes as string} disabled />
+                                        <Form.Control type="text" value={(approvedQuoteData?.Notes?.length) ? approvedQuoteData.Notes[approvedQuoteData.Notes.length - 1].contentValue as string : ""} disabled />
                                     </Col>
                                 </Form.Group>
-                                
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
-                                        <h6>Uploaded file:</h6>
-                                    </Form.Label>
-                                    <Col sm={7}>
-                                        <a href={`https://efundingexperts.herokuapp.com/report/download/${approvedQuoteData.creditReport}`} rel="noreferrer" target="_blank">Credit Report Download Link</a>
-                                    </Col>
-                                </Form.Group>
+
+                                {
+                                    (approvedQuoteData.creditReport) && (
+                                        <Form.Group as={Row} controlId="formPlaintextEmail">
+                                            <Form.Label column sm={5}>
+                                                <h6>Uploaded file:</h6>
+                                            </Form.Label>
+                                            <Col sm={7}>
+                                                <a 
+                                                    href={`
+                                                        https://efundingexperts.herokuapp.com/report/download/${approvedQuoteData.creditReport}`
+                                                    } 
+                                                    rel="noreferrer" 
+                                                    target="_blank"
+                                                >
+                                                    Credit Report Download Link
+                                                </a>
+                                            </Col>
+                                        </Form.Group>
+                                    )
+                                }
+
                             </Form>
                         </Card.Body>
                         <Card.Footer>
@@ -296,6 +311,13 @@ const ApprovedQuote:React.FC<ApproveQuoteProps> = ({ approvedQuoteData, history,
                                 onClick={() =>setConvertToClientForm(true)}
                             >
                                 Convert To Client
+                            </Button>
+                            <Button
+                                variant="primary"
+                                className="mr-2"
+                                onClick={() =>setShowNotesHistory(true)}
+                            >
+                                See Notes History
                             </Button>
                             <Button 
                                 variant="success" 
@@ -375,6 +397,12 @@ const ApprovedQuote:React.FC<ApproveQuoteProps> = ({ approvedQuoteData, history,
             }
             {
                 showLoader && <Loader />
+            }
+            {
+                showNotesHistory && <NotesHistory 
+                                        closeFunc={() =>setShowNotesHistory(false)}
+                                        notes={approvedQuoteData?.Notes || []}
+                                    />
             }
         </Page>
     )

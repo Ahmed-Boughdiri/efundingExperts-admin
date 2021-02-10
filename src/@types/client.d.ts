@@ -1,3 +1,4 @@
+import { NotesProps } from "./notes";
 
 export interface ClientProps {
     Adress: String,
@@ -12,7 +13,7 @@ export interface ClientProps {
     FirstName: String,
     Income: Number,
     LastName: String,
-    Notes: String,
+    Notes: NotesProps[],
     OwnerID: String,
     OwnerName: String,
     Phone: Number,
