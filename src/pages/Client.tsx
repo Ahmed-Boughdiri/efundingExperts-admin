@@ -268,7 +268,7 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
                                             <Col sm={7}>
                                                 <a 
                                                     href={`
-                                                        https://efundingexperts.herokuapp.com/report/download/${clientData.creditReport || ""}
+                                                        http://localhost:8000/report/download/${clientData.creditReport || ""}
                                                     `} 
                                                     rel="noreferrer" 
                                                     target="_blank"
