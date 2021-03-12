@@ -19,8 +19,15 @@ import Error from "../components/Error";
 import { RefferalProps } from "../@types/refferal";
 import { RouteComponentProps } from "react-router-dom";
 import NotesHistory from "../components/NotesHistory";
+import FilesPreview from "../components/FilesPreview";
 
 type RefferalComponentProps = StateProps & DispatchProps & RouteComponentProps;
+
+function getFiles(dir: String, files: String[]):String[] {
+    return files.map(file =>{
+        return `/uploads/${dir}/${file}`;
+    })
+}
 
 const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, storeRefferal }) => {
     const [loadingError, setLoadingError] = useState("");
@@ -76,9 +83,23 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
             return res
         }
     }
-    const handleConvert = async(ownerID:String, id:String, ApproxQuoteAmount: Number, TotalCommissions:Number, CommissionsCollected: Number, note:String) =>{
+    const handleConvert = async(
+        ownerID:String, 
+        id:String, 
+        ApproxQuoteAmount: Number, 
+        TotalCommissions:Number, 
+        CommissionsCollected: Number, 
+        note:String
+    ) =>{
         setShowLoader(true)
-        const res = await convertToClient(ownerID, id, ApproxQuoteAmount, TotalCommissions, CommissionsCollected, note)
+        const res = await convertToClient(
+            ownerID, 
+            id, 
+            ApproxQuoteAmount, 
+            TotalCommissions, 
+            CommissionsCollected, 
+            note
+        )
         if(!res.success) {
             setError(res?.error as string)
             setShowError(true)
@@ -139,6 +160,7 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
         setShowSendReport(false)
     }
     const [showNotesHistory, setShowNotesHistory] = useState(false)
+    const [preveiwUploadedFiles, setPreviewUploadedFiles] = useState(false);
     return (
         <Page currentPage="Refferals">
             {
@@ -293,9 +315,7 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
                                             </Form.Label>
                                             <Col sm={7}>
                                                 <a 
-                                                    href={`
-                                                        http://localhost:8000/report/download/${refferalData.creditReport}
-                                                    `} 
+                                                    href={`https://efundingexperts.herokuapp.com/report/download/${refferalData.dirname}`} 
                                                     target="_blank" 
                                                     rel="noreferrer"
                                                 >
@@ -306,6 +326,13 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
                                     )
                                 }
 
+                                <Button
+                                    variant="dark"
+                                    className="ml-2"
+                                    onClick={() => setPreviewUploadedFiles(true)}
+                                >
+                                    Preview Uploaded File(s)
+                                </Button>
                             </Form>
                         </Card.Body>
                         <Card.Footer>
@@ -428,6 +455,12 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
                     }
                     {
                         showLoader && <Loader />
+                    }
+                    {
+                        preveiwUploadedFiles && <FilesPreview 
+                                                    files={getFiles(refferalData.dirname, refferalData.creditReport)} 
+                                                    closeFunc={() => setPreviewUploadedFiles(false)}    
+                                                />
                     }
                     </>
                 )

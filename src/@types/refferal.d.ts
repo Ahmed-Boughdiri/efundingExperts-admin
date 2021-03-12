@@ -19,8 +19,9 @@ export interface RefferalProps {
     Status: String,
     WhatsMainPurposeOfFund: String,
     Zip: Number,
-    creditReport: String,
+    creditReport: String[],
     nameOfTheBusiness: String,
     __v: Number,
-    _id: String
+    _id: String,
+    dirname: String
 }
