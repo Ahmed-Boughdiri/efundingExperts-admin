@@ -15,7 +15,17 @@ export async function convertToClient(ownerID: String, id: String,ApproxQuoteAmo
         error: "Note Needs To Be Provided"
     }
     try {
-        const req = await Axios.post("/client/convert",{ ownerID, id, ApproxQuoteAmount, TotalCommissions, CommissionsCollected, note })
+        const req = await Axios.post(
+            "/client/convert",
+            { 
+                ownerID, 
+                id, 
+                ApproxQuoteAmount, 
+                TotalCommissions, 
+                CommissionsCollected, 
+                note 
+            }
+        )
         const res = await req.data
         return {
             success: true,
