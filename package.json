@@ -1,5 +1,6 @@
 {
-  "name": "admin",
+  "name": "efunding-experts",
+  "author": "Efunding Experts",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +21,8 @@
     "@types/react-router-dom": "^5.1.6",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "concurrently": "^6.0.0",
+    "electron-is-dev": "^2.0.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-custom-scrollbars": "^4.2.1",
@@ -30,13 +33,27 @@
     "react-spinners": "^0.9.0",
     "redux": "^4.0.5",
     "typescript": "^4.1.2",
+    "wait-on": "^5.2.1",
     "web-vitals": "^0.2.4"
+  },
+  "build": {
+    "appId": "com.loyno-mathcs.Ahmed-Boughdiri.weatherstation.wotdevice",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-package": "./node_modules/.bin/electron-builder -c.extraMetadata.main=build/start-electron.js",
+    "preelectron-package": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +72,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "homepage": "./",
+  "devDependencies": {
+    "electron": "^12.0.1",
+    "electron-builder": "^22.10.5"
   }
 }
