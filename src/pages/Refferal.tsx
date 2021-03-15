@@ -25,7 +25,7 @@ type RefferalComponentProps = StateProps & DispatchProps & RouteComponentProps;
 
 function getFiles(dir: String, files: String[]):String[] {
     return files.map(file =>{
-        return `/uploads/${dir}/${file}`;
+        return `uploads/${dir}/${file}`;
     })
 }
 
