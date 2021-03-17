@@ -37,7 +37,7 @@ export const tabs = async() =>{
         },
         {
             name: "RequestedUsers",
-            link: "/",
+            link: "/requests",
             icon: faUsers,
             placeholder: "New Requests",
             notifications: requestedUsersNotif,

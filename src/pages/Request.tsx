@@ -17,7 +17,11 @@ import { RouteComponentProps } from "react-router-dom";
 
 type RequestComponentProps = RouteComponentProps & StateProps;
 
-const Request:React.FC<RequestComponentProps> = ({ request, id, history }) =>{
+const Request:React.FC<RequestComponentProps> = ({ 
+    request, 
+    id, 
+    history 
+}) =>{
     const [confirm, setConfirm] = useState(false);
     const [confirmDeny, setConfirmDeny] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -55,7 +59,7 @@ const Request:React.FC<RequestComponentProps> = ({ request, id, history }) =>{
                 setLoading(false)
             } else {
                 setLoading(false)
-                history.push("/")
+                history.push("/requests")
                 return res;
             }
         } catch(err) {
@@ -74,7 +78,7 @@ const Request:React.FC<RequestComponentProps> = ({ request, id, history }) =>{
                 setLoading(false)
             } else {
                 setLoading(false)
-                history.push("/")
+                history.push("/requests")
                 return res;
             }
         } catch(err) {
@@ -91,10 +95,14 @@ const Request:React.FC<RequestComponentProps> = ({ request, id, history }) =>{
             city: requestData?.city,
             state: requestData?.state,
             occupation: requestData?.occupation,
-            HowDidYouHearAboutUs: requestData?.HowDidYouHearAboutUs,
-            AreYouCurrentlyHelpingClientsWithHighScoresObtainFunding: requestData?.AreYouCurrentlyHelpingClientsWithHighScoresObtainFunding,
-            HowMuchFundingCanYouLaveragePerMonth: requestData?.HowMuchFundingCanYouLaveragePerMonth,
-            HaveYouExcellentHighClientsToReferNow: requestData?.HaveYouExcellentHighClientsToReferNow,
+            HowDidYouHearAboutUs: 
+                requestData?.HowDidYouHearAboutUs,
+            AreYouCurrentlyHelpingClientsWithHighScoresObtainFunding: 
+                requestData?.AreYouCurrentlyHelpingClientsWithHighScoresObtainFunding,
+            HowMuchFundingCanYouLaveragePerMonth: 
+                requestData?.HowMuchFundingCanYouLaveragePerMonth,
+            HaveYouExcellentHighClientsToReferNow: 
+                requestData?.HaveYouExcellentHighClientsToReferNow,
             toEmail: emailTo,
             note: sendNote
         }

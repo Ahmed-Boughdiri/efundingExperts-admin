@@ -1,0 +1,26 @@
+
+.login-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f3f3;
+    flex-direction: column;
+}
+.login-card-container {
+    width: 400px;
+}
+.login-card-body {
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    padding: 20px 15px;
+}
+.login-card-input-label {
+    text-align: left;
+    color: #333;
+}
+.login-card-btn {
+    width: 150px !important;
+}

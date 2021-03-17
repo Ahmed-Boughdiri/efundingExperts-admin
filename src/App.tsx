@@ -11,12 +11,14 @@ import ApprovedQuotes from "./pages/ApprovedQuotes";
 import ApprovedQuote from "./pages/ApprovedQuote";
 import Users from "./pages/Users";
 import User from "./pages/User";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={RequestedUsers} />
+        <Route exact path="/" component={Login} />
+        <Route exact path="/requests" component={RequestedUsers} />
         <Route exact path="/request" component={Request} />
         <Route exact path="/refferals" component={NewRefferals} />
         <Route exact path="/refferal" component={Refferal} />
