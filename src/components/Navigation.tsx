@@ -8,7 +8,7 @@ import { tabs } from "../global/Global";
 import Loading from "./Loader";
 
 
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
 
 const Navigation:React.FC<{ currentPage: String }> = ({ currentPage }) =>{
     const [tabsData, setTabsData] = useState<any[]>([]);
@@ -24,7 +24,11 @@ const Navigation:React.FC<{ currentPage: String }> = ({ currentPage }) =>{
     return (
         <div className="navigation">
             <div className="brand mb-2">
-                <Image src={logo} height={33} width={105} />
+                <Image 
+                    src={logo} 
+                    height={33} 
+                    width={105} 
+                />
             </div>
             <div className="navigation-title mb-2">
                 <h6 className="text-left mt-2">NAVIGATION</h6>
@@ -32,7 +36,13 @@ const Navigation:React.FC<{ currentPage: String }> = ({ currentPage }) =>{
             <ListGroup className="rounded-0 mt-4">
                 {
                     tabsData.length && tabsData.map(tab =>(
-                        <Link className={`remove-underline mt-2 ${(currentPage === tab.name) && "active-tab"}`} to={tab.link}>
+                        <Link 
+                            className={`
+                                remove-underline 
+                                mt-2 
+                                ${(currentPage === tab.name) && "active-tab"}`} 
+                                to={tab.link}
+                                >
                             <ListGroup.Item
                                 className={`bg-transparent text-left border-0 navigation-link`}
                             >
@@ -52,7 +62,12 @@ const Navigation:React.FC<{ currentPage: String }> = ({ currentPage }) =>{
                                     {
                                         tab.notifications && (
                                             <Col sm={2}>
-                                                <Badge variant="danger" className="notif-number">{tab.notifications}</Badge>
+                                                <Badge 
+                                                    variant="danger" 
+                                                    className="notif-number"
+                                                    >
+                                                        {tab.notifications}
+                                                    </Badge>
                                             </Col>
                                         )
                                     }

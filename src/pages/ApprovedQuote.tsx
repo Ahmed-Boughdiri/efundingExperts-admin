@@ -146,145 +146,304 @@ const ApprovedQuote:React.FC<ApproveQuoteProps> = ({ approvedQuoteData, history,
                         </Card.Header>
                         <Card.Body>
                             <Form>
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>FullName:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={`${approvedQuoteData.FirstName} ${approvedQuoteData.LastName}`} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={`${approvedQuoteData.FirstName} ${approvedQuoteData.LastName}`} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Desired Amount Of Funding:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.DesiredAmountOfFunding as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.DesiredAmountOfFunding as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Whats Main Purpose Of Fund:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.WhatsMainPurposeOfFund as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.WhatsMainPurposeOfFund as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Do They Already Have A Business:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.DoTheyAlreadyHaveABusiness as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.DoTheyAlreadyHaveABusiness as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Date Created:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.DateCreated as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.DateCreated as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>name Of The Business:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.nameOfTheBusiness as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.nameOfTheBusiness as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Adress:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.Adress as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.Adress as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>City:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.City as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.City as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>State:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.State as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.State as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Zip:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.Zip as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.Zip as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>DOB:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.DOBdata as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.DOBdata as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Phone:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.Phone as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.Phone as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Email:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.Email as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.Email as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Income:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={approvedQuoteData.Income as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={approvedQuoteData.Income as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Notes:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={(approvedQuoteData?.Notes?.length) ? approvedQuoteData.Notes[approvedQuoteData.Notes.length - 1].contentValue as string : ""} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={
+                                                (approvedQuoteData?.Notes?.length) ? 
+                                                approvedQuoteData.Notes[approvedQuoteData.Notes.length - 1].contentValue as string : ""
+                                            } 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
                                 {
                                     (approvedQuoteData.creditReport) && (
-                                        <Form.Group as={Row} controlId="formPlaintextEmail">
-                                            <Form.Label column sm={5}>
+                                        <Form.Group 
+                                            as={Row} 
+                                            controlId="formPlaintextEmail"
+                                        >
+                                            <Form.Label 
+                                                column 
+                                                sm={5}
+                                            >
                                                 <h6>Uploaded file:</h6>
                                             </Form.Label>
                                             <Col sm={7}>
