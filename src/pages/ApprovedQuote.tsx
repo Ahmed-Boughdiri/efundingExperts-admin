@@ -448,7 +448,7 @@ const ApprovedQuote:React.FC<ApproveQuoteProps> = ({ approvedQuoteData, history,
                                             </Form.Label>
                                             <Col sm={7}>
                                                 <a 
-                                                    href={`https://efundingexperts-api.herokuapp.com/report/download/${approvedQuoteData.creditReport}`} 
+                                                    href={`https://efundingexpertapi.herokuapp.com/report/download/${approvedQuoteData.creditReport}`} 
                                                     rel="noreferrer" 
                                                     target="_blank"
                                                 >

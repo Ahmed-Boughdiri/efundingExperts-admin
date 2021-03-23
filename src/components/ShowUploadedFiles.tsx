@@ -31,7 +31,7 @@ const ShowUploadedFile:React.FC<ShowUploadedFileProps> = ({ closeFunc, fileSrc }
                                             <Carousel.Item className="carousel-item-container">
                                                 <img
                                                     className="d-block w-100 carousel-image"
-                                                    src={`https://efundingexperts-api.herokuapp.com/${file as string}`}
+                                                    src={`https://efundingexpertapi.herokuapp.com/${file as string}`}
                                                     alt="First slide"
                                                 />
                                             </Carousel.Item>

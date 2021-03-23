@@ -315,7 +315,7 @@ const Refferal:React.FC<RefferalComponentProps> = ({ refferalData, history, stor
                                             </Form.Label>
                                             <Col sm={7}>
                                                 <a 
-                                                    href={`https://efundingexperts-api.herokuapp.com/report/download/${refferalData.dirname}`} 
+                                                    href={`https://efundingexpertapi.herokuapp.com/report/download/${refferalData.dirname}`} 
                                                     target="_blank" 
                                                     rel="noreferrer"
                                                 >

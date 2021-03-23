@@ -267,7 +267,7 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
                                             </Form.Label>
                                             <Col sm={7}>
                                                 <a 
-                                                    href={`https://efundingexperts-api.herokuapp.com/report/download/${clientData.creditReport || ""}`} 
+                                                    href={`https://efundingexpertapi.herokuapp.com/report/download/${clientData.creditReport || ""}`} 
                                                     rel="noreferrer" 
                                                     target="_blank"
                                                 >

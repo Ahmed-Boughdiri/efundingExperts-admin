@@ -63,7 +63,7 @@ const FilePreview:React.FC<FilePreviewProps> = ({ files, closeFunc }) =>{
                                         >
                                             <img
                                                 className="d-block preview-file-img"
-                                                src={`https://efundingexperts-api.herokuapp.com/${file}`}
+                                                src={`https://efundingexpertapi.herokuapp.com/${file}`}
                                                 alt="First slide"
                                             />
                                         </Carousel.Item>
