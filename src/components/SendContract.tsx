@@ -15,46 +15,99 @@ interface SendContractProps {
     showError: Boolean
 }
 
-const SendContract:React.FC<SendContractProps> = ({ closeFunc, titleValue, onChangeTitle, onChangeContractType, previewLinkValue, onChangePreviewLink, onClick, contractUpload, error, showError }) =>{
+const SendContract:React.FC<SendContractProps> = ({ 
+    closeFunc, 
+    titleValue, 
+    onChangeTitle, 
+    onChangeContractType, 
+    previewLinkValue, 
+    onChangePreviewLink, 
+    onClick, 
+    contractUpload, 
+    error, 
+    showError 
+}) =>{
     return (
         <div className="send-contract">
             {
                 showError && (
-                    <Alert variant="danger" style={{ width: 450, textAlign: "center" }}>
+                    <Alert 
+                        variant="danger" 
+                        style={{ 
+                            width: 450, 
+                            textAlign: "center" 
+                        }}
+                    >
                         { error }
                     </Alert>
                 )
             }
             <Modal.Dialog className="add-quote-note-card">
-                <Modal.Header closeButton onHide={closeFunc} className="add-quote-note-header">
+                <Modal.Header 
+                    closeButton 
+                    onHide={closeFunc} 
+                    className="add-quote-note-header"
+                >
                     <h6 className="add-quote-note-title">Send Contract:</h6>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={onClick}>
-                        <Form.Group controlId="formBasicEmail">
+                    <Form 
+                        onSubmit={onClick}
+                    >
+                        <Form.Group 
+                            controlId="formBasicEmail"
+                        >
                             <Form.Label>Contract Link:</Form.Label>
-                            <Form.Control type="text" value={previewLinkValue as string} onChange={onChangePreviewLink} placeholder="" />
+                            <Form.Control 
+                                type="text" 
+                                value={previewLinkValue as string} 
+                                onChange={onChangePreviewLink} 
+                                placeholder="" 
+                            />
                         </Form.Group>
 
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>Contract Title:</Form.Label>
-                            <Form.Control type="text" placeholder="" value={titleValue as string} onChange={onChangeTitle} />
+                            <Form.Control 
+                                type="text" 
+                                placeholder="" 
+                                value={titleValue as string} 
+                                onChange={onChangeTitle} 
+                            />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Contract Type</Form.Label>
-                            <Form.Control as="select" onClick={onChangeContractType}>
-                                <option value="Contracts and Applications">Contracts and Applications</option>
-                                <option value="Other Applications">Other Applications</option>
-                                <option value="Other Forms">Other Forms</option>
+                            <Form.Control 
+                                as="select" 
+                                onClick={onChangeContractType}
+                            >
+                                <option value="Contracts and Applications">
+                                    Contracts and Applications
+                                </option>
+                                <option value="Other Applications">
+                                    Other Applications
+                                </option>
+                                <option value="Other Forms">
+                                    Other Forms
+                                </option>
                             </Form.Control>
                         </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword">
+                        <Form.Group 
+                            controlId="formBasicPassword"
+                        >
                             <Form.Label>PDF Version:</Form.Label>
-                            <Form.Control type="file" placeholder="" onChange={contractUpload} />
+                            <Form.Control 
+                                type="file" 
+                                placeholder="" 
+                                onChange={contractUpload} 
+                            />
                         </Form.Group>
 
-                        <Button className="add-quote-note-btn" type="submit">
+                        <Button 
+                            className="add-quote-note-btn" 
+                            type="submit"
+                        >
                             Submit
                         </Button>
                     </Form>
