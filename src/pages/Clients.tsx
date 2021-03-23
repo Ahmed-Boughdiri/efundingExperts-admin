@@ -13,7 +13,10 @@ import { RouteComponentProps } from "react-router-dom";
 
 type ClientsComponentProps = StateProps & DispatchProps & RouteComponentProps;
 
-const Clients:React.FC<ClientsComponentProps> = ({ storeClient, history }) =>{
+const Clients:React.FC<ClientsComponentProps> = ({ 
+    storeClient, 
+    history 
+}) =>{
     const [clients, setClients] = useState<ClientProps[]>([]);
     const [error, setError] = useState("");
     const [showError, setShowError] = useState(false);
@@ -46,11 +49,19 @@ const Clients:React.FC<ClientsComponentProps> = ({ storeClient, history }) =>{
                         </Card.Header>
                         <Card.Body>
                             {
-                                !clients.length && <Empty message="No Clients Recorded Yet" />
+                                !clients.length && (
+                                    <Empty 
+                                        message="No Clients Recorded Yet" 
+                                    />
+                                )
                             }
                             {
                                 (clients.length !== 0) && (
-                                    <Table striped bordered hover>
+                                    <Table 
+                                        striped 
+                                        bordered 
+                                        hover
+                                    >
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -73,7 +84,9 @@ const Clients:React.FC<ClientsComponentProps> = ({ storeClient, history }) =>{
                                                         <td>{client.TotalCommissions}</td>
                                                         <td>{client.CommissionsCollected}</td>
                                                         <td>
-                                                            <Button className="more-info-btn" onClick={() =>{
+                                                            <Button 
+                                                            className="more-info-btn" 
+                                                            onClick={() =>{
                                                                 storeID(client._id)
                                                                 storeClient(client);
                                                                 history.push("/client")
