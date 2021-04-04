@@ -1,5 +1,12 @@
 import Axios from "./Axios";
-import { faUsers, faFileWord, faCheckSquare, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { 
+    faUsers, 
+    faFileWord, 
+    faCheckSquare, 
+    faUser, 
+    faUserPlus,
+    faCog
+} from '@fortawesome/free-solid-svg-icons';
 
 async function requestedUsersNotifications() {
     try{
@@ -61,5 +68,11 @@ export const tabs = async() =>{
             icon: faUser,
             placeholder: "Clients",
         },
+        {
+            name: "Settings",
+            link: "/settings",
+            icon: faCog,
+            placeholder: "Settings"
+        }
     ]
 } 

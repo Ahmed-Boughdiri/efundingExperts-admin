@@ -15,6 +15,8 @@ import handleClientEditStatsFunc from "../global/EditClientStat";
 import AddClientNote from "../components/AddQuoteNote";
 import addClientNote from "../global/AddClientNote";
 import NotesHistory from "../components/NotesHistory";
+import deleteClient from "../global/DeleteClient";
+import ConfirmDeleteClient from "../components/ConfirmDeleteClient";
 
 type ClientComponentProps = RouteComponentProps & StateProps & DispatchProps
 
@@ -29,7 +31,13 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
     const [showLoader, setShowLoader] = useState(false);
     const [loadingError, setLoadingError] = useState("");
     const [showLoadingError, setShowLoadingError] = useState(false);
-    const handleSendContract = async(e:React.FormEvent, title:String, contractType: String, previewLink:String, ownerID: String) =>{
+    const handleSendContract = async(
+        e:React.FormEvent, 
+        title:String, 
+        contractType: String, 
+        previewLink:String, 
+        ownerID: String
+    ) =>{
         setShowLoader(true)
         e.preventDefault()
 
@@ -90,19 +98,32 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
             }
         }
     }
-    const [showEditClientStatsForm, setShowEditClientStatsForm] = useState(false);
-    const [clientStatsApproxFundingAmount, setClientStatsApproxFundingAmount] = useState(clientData.ApproxQuoteAmount);
-    const [clientStatsTotalCommision, setClientStatsTotalCommision] = useState(clientData.TotalCommissions);
-    const [clientStatsCommisionCollected, setClientStatsCommisionCollected] = useState(clientData.CommissionsCollected);
+    const [showEditClientStatsForm, setShowEditClientStatsForm] = 
+                                    useState(false);
+    const [clientStatsApproxFundingAmount, setClientStatsApproxFundingAmount] = 
+                                useState(clientData.ApproxQuoteAmount);
+    const [clientStatsTotalCommision, setClientStatsTotalCommision] = 
+                                useState(clientData.TotalCommissions);
+    const [clientStatsCommisionCollected, setClientStatsCommisionCollected] = 
+                                useState(clientData.CommissionsCollected);
     const [clientStatsNote, setClientStatsNote] = useState("");
     const handleClientEditStats = async() =>{
         setShowLoader(true)
         const data:any = {};
-        if(clientStatsApproxFundingAmount !== 0) data.ApproxQuoteAmount = clientStatsApproxFundingAmount;
-        if(clientStatsTotalCommision !== 0) data.TotalCommision = clientStatsTotalCommision;
-        if(clientStatsCommisionCollected !== 0) data.CommisionCollected = clientStatsCommisionCollected;
-        if(clientStatsNote.length) data.Notes = clientStatsNote;
-        const res = await handleClientEditStatsFunc(clientData.OwnerID, clientData._id, data, clientData.Email);
+        if(clientStatsApproxFundingAmount !== 0) 
+            data.ApproxQuoteAmount = clientStatsApproxFundingAmount;
+        if(clientStatsTotalCommision !== 0) 
+            data.TotalCommision = clientStatsTotalCommision;
+        if(clientStatsCommisionCollected !== 0) 
+            data.CommisionCollected = clientStatsCommisionCollected;
+        if(clientStatsNote.length) 
+            data.Notes = clientStatsNote;
+        const res = await handleClientEditStatsFunc(
+                        clientData.OwnerID, 
+                        clientData._id, 
+                        data, 
+                        clientData.Email
+                    );
         if(!res.success) {
             setError(res.error as string)
             setShowError(true)
@@ -118,7 +139,12 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
     const [clientNote, setClientNote] = useState("");
     const handleAddClientNote = async() =>{
         setShowLoader(true);
-        const res = await addClientNote(clientData.OwnerID, clientData._id, clientData.Email, clientNote);
+        const res = await addClientNote(
+                        clientData.OwnerID, 
+                        clientData._id, 
+                        clientData.Email, 
+                        clientNote
+                    );
         if(!res.success) {
             setError(res.error as string)
             setShowError(true)
@@ -132,6 +158,21 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
         handleClientData();
     },[])
     const [showNotesHistory, setShowNotesHistory] = useState(false)
+
+    const [confirmDeleteClient, setConfirmDeleteClient] = useState(false);
+    const handleDeleteClient = async() =>{
+        setConfirmDeleteClient(false)
+        setShowLoader(true)
+        const res = await deleteClient(clientData._id, clientData.OwnerID);
+        if(!res.success) {
+            setShowLoader(false)
+            setError(res.error as string)
+            setShowError(true)
+            return;
+        }
+        setShowLoader(false)
+        history.push("/clients")
+    }
     return (
         <Page currentPage="Clients">
             {
@@ -142,127 +183,267 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
                         </Card.Header>
                         <Card.Body>
                             <Form>
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>FullName:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={`${clientData.FirstName} ${clientData.LastName}`} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={`${clientData.FirstName} ${clientData.LastName}`} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Adress:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.Adress as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.Adress as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>City:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.City as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.City as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>State:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.State as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.State as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Zip:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.Zip as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.Zip as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>DOB:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.DOBdata as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.DOBdata as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Phone:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.Phone as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.Phone as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Email:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.Email as string} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.Email as string} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Income:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.Income as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.Income as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Notes:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={(clientData?.Notes?.length) ? clientData.Notes[clientData.Notes.length - 1].contentValue as string : ""} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={
+                                                (clientData?.Notes?.length) ? 
+                                                clientData.Notes[clientData.Notes.length - 1].contentValue as string : 
+                                                ""
+                                            } 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Funding Amount Requested:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.ApproxQuoteAmount as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.ApproxQuoteAmount as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Total Commissions:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.TotalCommissions as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.TotalCommissions as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
-                                <Form.Group as={Row} controlId="formPlaintextEmail">
-                                    <Form.Label column sm={5}>
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
                                         <h6>Commissions Collected:</h6>
                                     </Form.Label>
                                     <Col sm={7}>
-                                        <Form.Control type="text" value={clientData.CommissionsCollected as number} disabled />
+                                        <Form.Control 
+                                            type="text" 
+                                            value={clientData.CommissionsCollected as number} 
+                                            disabled 
+                                        />
                                     </Col>
                                 </Form.Group>
 
                                 {
                                     clientData.creditReport && (
-                                        <Form.Group as={Row} controlId="formPlaintextEmail">
-                                            <Form.Label column sm={5}>
+                                        <Form.Group 
+                                            as={Row} 
+                                            controlId="formPlaintextEmail"
+                                        >
+                                            <Form.Label 
+                                                column 
+                                                sm={5}
+                                            >
                                                 <h6>Uploaded File:</h6>
                                             </Form.Label>
                                             <Col sm={7}>
@@ -307,6 +488,13 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
                                 onClick={() =>setShowClientNote(true)}
                             >
                                 Add Note
+                            </Button>
+                            <Button
+                                variant="danger"
+                                className="ml-2"
+                                onClick={() => setConfirmDeleteClient(true)}
+                            >
+                                Delete Client
                             </Button>
                         </Card.Footer>
                     </Card>
@@ -393,6 +581,12 @@ const Client:React.FC<ClientComponentProps> = ({ clientData, history, storeClien
                                         closeFunc={() =>setShowNotesHistory(false)}
                                         notes={clientData?.Notes || []}
                                     />
+            }
+            {
+                confirmDeleteClient && <ConfirmDeleteClient 
+                                            onConfirm={handleDeleteClient}
+                                            onCancel={() => setConfirmDeleteClient(false)}
+                                        />
             }
         </Page>
     )

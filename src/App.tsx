@@ -12,6 +12,7 @@ import ApprovedQuote from "./pages/ApprovedQuote";
 import Users from "./pages/Users";
 import User from "./pages/User";
 import Login from "./pages/Login";
+import Settings from "./pages/Settings"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/quotes/approved/preview" component={ApprovedQuote} />
         <Route exact path="/users" component={Users} />
         <Route exact path="/user/preview" component={User} />
+        <Route exact path="/settings" component={Settings} />
       </Switch>
     </Router>
   );

@@ -4,7 +4,15 @@ import Navigation from "./Navigation";
 import { Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Page:React.FC<{ children:React.ReactNode, currentPage: String }> = ({ children, currentPage }) =>{
+interface PageProps {
+    children: React.ReactNode,
+    currentPage: String
+}
+
+const Page:React.FC<PageProps> = ({ 
+    children, 
+    currentPage 
+}) =>{
     return (
         <div className="page">
             <Navigation currentPage={currentPage} />
