@@ -1,4 +1,7 @@
-import React,{ useEffect, useState } from "react";
+import React,{ 
+    useEffect, 
+    useState 
+} from "react";
 import "../layout/Settings.css";
 import Page from "../components/Page";
 import { 
@@ -18,10 +21,24 @@ import { SettingsProps } from "../@types/settings";
 
 const Settings:React.FC<RouteComponentProps> = ({ history }) =>{
     const [editSettings, setEditSettings] = useState(false);
-    const [notificationEmail, setNotificationEmail] = useState("");
-    const [notificationEmailPassword, setNotificationEmailPassword] = useState("");
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
+    const [settingsData, setSettingsData] = 
+                    useState<SettingsProps>({
+                        notificationEmail: "",
+                        notificationEmailPassword: "",
+                        loginEmail: "",
+                        loginPassword: "",
+                        notificationService: ""
+                    });
+    const [notificationEmail, setNotificationEmail] = 
+                    useState("");
+    const [notificationEmailPassword, setNotificationEmailPassword] = 
+                    useState("");
+    const [notificationSettingService, setNotificationSettingService] = 
+                    useState("");
+    const [loginEmail, setLoginEmail] = 
+                    useState("");
+    const [loginPassword, setLoginPassword] = 
+                    useState("");
     const [loading, setLoading] = useState(true);
     const [showError, setShowError] = useState(false);
     const [error, setError] = useState("");
@@ -32,7 +49,8 @@ const Settings:React.FC<RouteComponentProps> = ({ history }) =>{
             notificationEmail,
             notificationEmailPassword,
             loginEmail,
-            loginPassword
+            loginPassword,
+            notificationSettingService
         )
         if(!res.success) {
             setError(res.error as string);
@@ -45,12 +63,6 @@ const Settings:React.FC<RouteComponentProps> = ({ history }) =>{
         setShowError(false);
         history.push("/settings")
     }
-    const [settingsData, setSettingsData] = useState<SettingsProps>({
-        notificationEmail: "",
-        notificationEmailPassword: "",
-        loginEmail: "",
-        loginPassword: ""
-    })
     const handleGetSettings = async() =>{
         setLoading(true)
         const res = await getSettings();
@@ -153,6 +165,25 @@ const Settings:React.FC<RouteComponentProps> = ({ history }) =>{
                                         />
                                     </Col>
                                 </Form.Group>
+
+                                <Form.Group 
+                                    as={Row} 
+                                    controlId="formPlaintextEmail"
+                                >
+                                    <Form.Label 
+                                        column 
+                                        sm={5}
+                                    >
+                                        <h6>Notification Email Service:</h6>
+                                    </Form.Label>
+                                    <Col sm={7}>
+                                        <Form.Control 
+                                            type="text" 
+                                            value={settingsData.notificationService as string}
+                                            disabled 
+                                        />
+                                    </Col>
+                                </Form.Group>
                             </Form>
                         </Card.Body>
                         <Card.Footer>
@@ -172,6 +203,7 @@ const Settings:React.FC<RouteComponentProps> = ({ history }) =>{
                                     onCancel={() => setEditSettings(false)}
                                     emailNotificationValue={notificationEmail}
                                     emailNotificationPasswordValue={notificationEmailPassword}
+                                    notificationService={notificationSettingService}
                                     loginEmailValue={loginEmail}
                                     loginPasswordValue={loginPassword}
                                     handleEmailNotification={
@@ -189,6 +221,10 @@ const Settings:React.FC<RouteComponentProps> = ({ history }) =>{
                                     handleLoginPassword={
                                         (e:React.ChangeEvent<HTMLInputElement>) =>
                                             setLoginPassword(e.target.value)
+                                    }
+                                    handleNotificationService={
+                                        (e:React.ChangeEvent<HTMLSelectElement>) =>
+                                            setNotificationSettingService(e.target.value)
                                     }
                                 />
             }

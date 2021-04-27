@@ -13,12 +13,19 @@ interface EditSettingsProps {
     onCancel: () => void;
     emailNotificationValue: String;
     emailNotificationPasswordValue: String;
+    notificationService: String;
     loginEmailValue: String;
     loginPasswordValue: String;
-    handleEmailNotification: (e:React.ChangeEvent<HTMLInputElement>) => void;
-    handleEmailNotificationPassword: (e:React.ChangeEvent<HTMLInputElement>) => void;
-    handleLoginEmail: (e:React.ChangeEvent<HTMLInputElement>) => void;
-    handleLoginPassword: (e:React.ChangeEvent<HTMLInputElement>) => void;
+    handleEmailNotification: 
+        (e:React.ChangeEvent<HTMLInputElement>) => void;
+    handleEmailNotificationPassword: 
+        (e:React.ChangeEvent<HTMLInputElement>) => void;
+    handleLoginEmail: 
+        (e:React.ChangeEvent<HTMLInputElement>) => void;
+    handleLoginPassword: 
+        (e:React.ChangeEvent<HTMLInputElement>) => void;
+    handleNotificationService: 
+        (e:React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const EditSettings:React.FC<EditSettingsProps> = ({
@@ -26,12 +33,14 @@ const EditSettings:React.FC<EditSettingsProps> = ({
     onCancel,
     emailNotificationValue,
     emailNotificationPasswordValue,
+    notificationService,
     loginEmailValue,
     loginPasswordValue,
     handleEmailNotification,
     handleEmailNotificationPassword,
     handleLoginEmail,
-    handleLoginPassword
+    handleLoginPassword,
+    handleNotificationService
 }) =>{
     return (
         <div className="edit-settings-container">
@@ -113,6 +122,28 @@ const EditSettings:React.FC<EditSettingsProps> = ({
                                 value={loginPasswordValue as string} 
                                 onChange={handleLoginPassword}
                             />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group 
+                        as={Row} 
+                        controlId="formPlaintextEmail"
+                    >
+                        <Form.Label 
+                            column 
+                            sm={5}
+                        >
+                            <h6>Notification Email Srtting:</h6>
+                        </Form.Label>
+                        <Col sm={7}>
+                            <Form.Control 
+                                as="select"
+                                onChange={handleNotificationService}
+                                value={notificationService as string}
+                            >
+                                <option value="Gmail">Gmail</option>
+                                <option value="Outlook">Outlook</option>
+                            </Form.Control>
                         </Col>
                     </Form.Group>
                 </Card.Body>

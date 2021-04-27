@@ -23,7 +23,7 @@ const FilePreview:React.FC<FilePreviewProps> = ({ files, closeFunc }) =>{
                 <Card.Header className="preview-files-header">
                     <h6 className="preview-files-title">File(s) Uploaded:</h6>
                     <Image 
-                        src={close}
+                        src={"https://i.imgur.com/rsc2TZI.png"}
                         height={20}
                         width={20}
                         style={{

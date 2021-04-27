@@ -3,5 +3,6 @@ export interface SettingsProps {
     notificationEmail: String;
     notificationEmailPassword: String;
     loginEmail: String;
-    loginPassword: String
+    loginPassword: String;
+    notificationService: String;
 }

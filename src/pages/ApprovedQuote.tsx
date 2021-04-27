@@ -119,7 +119,11 @@ const ApprovedQuote:React.FC<ApproveQuoteProps> = ({ approvedQuoteData, history,
     const [approvedQuoteNote, setApprovedQuoteNote] = useState("");
     const handleAddNewNote = async() =>{
         setShowLoader(true)
-        const res = await addApprovedQuoteNote(approvedQuoteData._id, approvedQuoteData.OwnerID, approvedQuoteNote);
+        const res = await addApprovedQuoteNote(
+            approvedQuoteData._id, 
+            approvedQuoteData.OwnerID, 
+            approvedQuoteNote
+        );
         if(!res.success) {
             setError(res.error as string)
             setShowError(true)

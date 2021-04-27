@@ -5,6 +5,7 @@ export default async function():Promise<ReturnProps> {
     try {
         const req = await Axios.get("/settings/get");
         const res = await req.data;
+        console.log("Data: ", res)
         return {
             success: true,
             data: res

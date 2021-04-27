@@ -29,11 +29,14 @@
     box-sizing: border-box;
     padding: 0 10px;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 90px;
 }
 .notes-history-item>img {
     border-radius: 50%;
+    margin: 0;
+    padding: 0;
     margin-right: 30px;
+    margin-top: 0px;
 }
 .notes-history-item>div {
     float: right;

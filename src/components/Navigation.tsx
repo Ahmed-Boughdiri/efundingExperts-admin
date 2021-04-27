@@ -7,9 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { tabs } from "../global/Global";
 import Loading from "./Loader";
 
-
-import logo from "../assets/logo.png";
-
 const Navigation:React.FC<{ currentPage: String }> = ({ currentPage }) =>{
     const [tabsData, setTabsData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -25,7 +22,7 @@ const Navigation:React.FC<{ currentPage: String }> = ({ currentPage }) =>{
         <div className="navigation">
             <div className="brand mb-2">
                 <Image 
-                    src={logo} 
+                    src={"https://i.imgur.com/GrUZyoc.png"} 
                     height={33} 
                     width={105} 
                 />

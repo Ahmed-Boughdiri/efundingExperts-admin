@@ -5,14 +5,16 @@ export default async function(
     notificationEmail: String,
     notificationEmailPassword: String,
     loginEmail: String,
-    loginPassword: String
+    loginPassword: String,
+    notificationService: String
 ):Promise<ReturnProps> {
     try {
         const req = await Axios.post("/settings/edit", {
             notificationEmail,
             notificationEmailPassword,
             loginEmail,
-            loginPassword
+            loginPassword,
+            notificationService
         })
         const res = await req.data;
         return {

@@ -2,7 +2,6 @@ import React from "react";
 import "../layout/ShowUploadedFiles.css";
 import { Image, Carousel } from "react-bootstrap";
 
-import close from "../assets/close.png";
 import { isArray } from "util";
 
 interface ShowUploadedFileProps {
@@ -46,7 +45,7 @@ const ShowUploadedFile:React.FC<ShowUploadedFileProps> = ({ closeFunc, fileSrc }
                         onClick={closeFunc}
                     >
                         <Image 
-                            src={close} 
+                            src={"https://i.imgur.com/rsc2TZI.png"} 
                             onClick={closeFunc}    
                         />
                     </div>
